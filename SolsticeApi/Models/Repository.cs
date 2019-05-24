@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SolsticeApi.Models
+namespace SolsticeApi.Models.Repository
 {
-    public class Repository
+    public interface IDataRepository<TEntity>
     {
-        public interface IDataRepository<TEntity>
-        {
-            IEnumerable<TEntity> GetAll();
-            TEntity Get(long id);
-            void Add(TEntity entity);
-            void Update(TEntity dbEntity, TEntity entity);
-            void Delete(TEntity entity);
-        }
+        IEnumerable<TEntity> GetAllContacts();
+        TEntity GetContactById(long id);
+        List<TEntity> GetAllContactsByStateOrAdress(string id);
+        TEntity GetContactByEmailOrPhone(string id);
+        TEntity PostNewContact(TEntity entity);
+        TEntity Update(TEntity dbEntity, TEntity entity);
+        void Delete(TEntity entity);
     }
 }

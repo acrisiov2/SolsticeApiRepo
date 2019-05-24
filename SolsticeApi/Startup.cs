@@ -15,6 +15,8 @@ using Microsoft.Extensions.Options;
 using SolsticeApi.Data;
 using SolsticeApi.Extensions;
 using SolsticeApi.Models;
+using SolsticeApi.Data.ContactManager;
+using SolsticeApi.Models.Repository;
 
 namespace SolsticeApi
 {
@@ -31,11 +33,9 @@ namespace SolsticeApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureCors();
-
             services.ConfigureIISIntegration();
-
             services.AddDbContext<ContactContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:ContactDB"]));
-
+            services.AddScoped<IDataRepository<Contact>, ContactManager>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

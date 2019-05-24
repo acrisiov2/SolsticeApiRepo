@@ -15,5 +15,4 @@ namespace SolsticeApi.Data
         }
         public DbSet<Contact> Contacts { get; set; }
     }
-
 }
